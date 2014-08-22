@@ -1,0 +1,31 @@
+.\" OpenPAM's pam_rootok man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_ROOTOK 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_rootok - The root-only access PAM module
+.SH SYNOPSIS
+.B pam_rootok.so [\.\.\.]
+.SH DESCRIPTION
+pam_rootok is a PAM module which returns success only if the real UID of 
+the authenticating user is 0.
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+It's common to permit the superuser to be able to su to all users account. 
+To allow this, add the following line in 
+.I /etc/pam.d/su
+:
+.IP
+.nf
+auth	sufficient	pam_rootok.so
+auth	required  	pam_unix.so
+.fi
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR su (1),
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8) 
+

@@ -1,0 +1,13 @@
+#
+## Copyright (c) 2008 by Seraphim Mellos.  See LICENSE.
+#
+
+CC = gcc
+LD = $(CC)
+RM = rm -f
+MKDIR = mkdir -p
+INST = install -c
+CFLAGS = -Wall -g -fPIC -I../../include -I/opt/local/include -O2 -D_XOPEN_SOURCE=500 -D_SVID_SOURCE # -fno-stack-protector
+LDFLAGS = -shared # -Wl,$(LINKEROPTS)
+LINKEROPTS = 
+LDLIBS = -lpam -lcrypt

@@ -1,0 +1,37 @@
+.\" OpenPAM's pam_securetty man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_SECURETTY 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_securetty - PAM module which can limit root logins only from specific devices
+.SH SYNOPSIS
+.B pam_securetty.so [\.\.\.]
+.SH DESCRIPTION
+pam_securetty is a PAM module which limits root logins only from specific devices, 
+which are listed in 
+.I /etc/securetty.
+.PP
+The module checks the afformentioned file to ensure that it's a regular file and 
+also that it's not world writable. If either of the above is true, the module returns 
+PAM_AUTH_ERR, which means that the 
+.I /etc/securetty 
+file cannot be trusted (or either that the current TTY is not listed in the securetty
+file).
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To allow root logins only from the devices listed in 
+.I /etc/securetty 
+add the following line to the appropriate configuration files
+.nf
+.IP 
+auth	required	pam_securetty.so
+auth	required	pam_unix.so
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR securetty(5),
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8)
+

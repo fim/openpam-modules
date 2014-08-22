@@ -1,0 +1,30 @@
+.\" OpenPAM's pam_wheel man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_WHEEL 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_wheel - PAM module to limit root access to wheel group members
+.SH SYNOPSIS
+.B pam_wheel.so [\.\.\.]
+.SH DESCRIPTION
+pam_wheel is a PAM module which allows root access only to members of the 
+group wheel. If a group named wheel does not exist, then the group with GID = 0
+is used.
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To allow only wheel members to su to root, add the following lines in 
+./I /etc/pam.d/su 
+:
+.IP 
+.nf
+auth	required	pam_wheel.so
+auth	required	pam_unix.so
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR su(1),
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8)
+

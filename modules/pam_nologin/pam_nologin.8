@@ -1,0 +1,27 @@
+.\" OpenPAM's pam_nologin man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_NOLOGIN 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_nologin - The `No Users Allowed` PAM module
+.SH SYNOPSIS
+.B pam_nologin.so [\.\.\.]
+.SH DESCRIPTION
+pam_nologin is a PAM module that denies all access to non-root users if the
+.I /etc/nologin 
+file is present while displaying the file's contents.
+.PP
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To make sure no non-root users can login in a system add the following line to 
+.I /etc/pam.d/login 
+:
+.IP
+auth 	required 	pam_nologin.so
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8)

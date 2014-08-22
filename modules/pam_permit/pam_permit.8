@@ -1,0 +1,25 @@
+.\" OpenPAM's pam_permit man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_PERMIT 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_permit - The `Everybody is welcome` PAM module
+.SH SYNOPSIS
+.B pam_permit.so [\.\.\.]
+.SH DESCRIPTION
+pam_permit is a PAM module that always permits access with no authentication/accounting needed. 
+.PP
+Since the module provides unauthenticated access, it should be used with caution.
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To allow unauthenticated access to users add this to the PAM configuration file
+.IP 
+account 	required 	pam_permit.so
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8), 
+

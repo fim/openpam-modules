@@ -1,0 +1,73 @@
+.\" OpenPAM's pam_unix man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_UNIX 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_unix - Standard authentication and accounting PAM module
+.SH SYNOPSIS
+.B pam_unix.so [\.\.\.]
+.SH DESCRIPTION
+pam_unix is the standard authentication module for PAM and it provides 
+authentication, accounting, password management as well as session management functions. 
+.PP
+The authentication routine verifies the identity of user by examining 
+the relevant 
+.BR passwd (1) 
+or 
+.BR shadow (3)
+entry. It does so by prompting the user for his password and then ensures
+that it's correct using
+.BR crypt (3).
+.PP
+The account management routine performs a series of tests to verify whether
+the authenticated user is allowed access to the local user account by checking 
+the following 
+.BR shadow (3)
+elements: expire, last_change, max_change, min_change, warn_change. If the
+*_change elements are set the user will be informed in case the account is 
+about to expire and if it has expired already, access will be denied 
+for that user.
+.PP
+The password management routine is responsible for updating a user's password 
+entry in 
+.BI /etc/passwd 
+and in 
+.BI /etc/shadow 
+(the latter only in case the shadow flag is set).
+.SH OPTIONS
+.PP 
+.IP \fBdebug\fR
+Produce syslog debug messages (this is silently ignored as it's the default behaviour).
+.IP \fBmd5\fR
+Use md5 hashes for user passwords instead of the default DES
+.IP \fBnullok\fR
+Allow null passwords.
+.IP \fBsha512\fR
+Use sha512 hashes for user passwords instead of the default DES (not yet supported).
+.SH FILES
+.I /etc/pam.d/login
+.RS 
+ The PAM configuration file for the login utility.
+.RE
+.PP
+.I /etc/pam.d/passwd
+.RS
+The PAM configuration file for the passwd utility.
+.RE
+.PP
+.I /etc/pam.d/su
+.RS
+The PAM configuration file for the su utility
+.RE
+.PP
+Similar files exist for all applications who make use of the PAM modules and all of
+them reside in 
+.I /etc/pam.d/
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR passwd (1),
+.BR login (5),
+.BR su (1),
+.BR pam (8),
+.BR pam.conf (8)

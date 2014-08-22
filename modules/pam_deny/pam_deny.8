@@ -1,0 +1,37 @@
+.\" OpenPAM's pam_deny man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_DENY 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_deny - The `Nobody is welcome` PAM module
+.SH SYNOPSIS
+.B pam_deny.so [\.\.\.]
+.SH DESCRIPTION
+pam_deny is a PAM module that always denies access and indicates a failure to
+the calling application through the PAM library. 
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To ensure that a service always denies access to users add the following lines to the 
+appropriate PAM configuration file:
+.IP 
+.RS
+.nf
+#For authenticating
+auth		required 	pam_deny.so
+
+#For accounting
+account 	required 	pam_deny.so
+
+#For password changing
+password 	required	pam_deny.so
+
+#For sessiong management
+session 	required	pam_deny.so
+.RE
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8)

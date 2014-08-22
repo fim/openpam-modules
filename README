@@ -1,0 +1,25 @@
+This project was written in during April - August in 2008 
+as part of the Google Summer of Code under the Gentoo Organization.
+
+The aim of this project is to provide working PAM modules
+for Linux which will be built against OpenPAM and will be able 
+to work in a system without Linux-PAM. This will, hopefully, give
+people the ability to choose which PAM library to use, which has
+been one of the long term goals of the PAM team.
+
+In order to build the modules, you must already have a system
+with OpenPAM installed. The installation procedure for now is 
+quite simple :  
+
+>$ make && make install
+
+should take care of everything. Also, after installing these PAM 
+modules you should edit the files under /etc/pam.d/ to remove all 
+unwanted entries. Sample files exist in examples/pam.d/ for the most 
+common applications.
+ 
+After replacing Linux-PAM with OpenPAM, all applications that
+use PAM must be rebuild because while API compliant, Linux-PAM
+and OpenPAM are not ABI compiant which can result in an unusable
+system. One of these applications is the shadow package, which provides
+passwd, the interface which enables users to update their passwords.

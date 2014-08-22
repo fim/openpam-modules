@@ -1,0 +1,35 @@
+.\" OpenPAM's pam_shells man page
+.\" Contact me ( mellos@ceid.upatras.gr ) for any corrections or omissions.
+
+.TH PAM_SHELLS 8 "September 2008" "OpenPAM modules" "OpenPAM modules"
+.SH NAME 
+pam_shells - PAM module to check for a valid login shell
+.SH SYNOPSIS
+.B pam_shells.so [\.\.\.]
+.SH DESCRIPTION
+pam_shells is a PAM module which examines each user's login shell and only allows access
+if that shell is listed in 
+.I /etc/shells.
+.PP
+The module also checks the 
+.I /etc/shells 
+file to ensure that it's a regular file and 
+also that it's not world writable. If either of the above is true, the module returns 
+PAM_AUTH_ERR, which means that the 
+.I /etc/shells  
+file cannot be trusted (or either that the login shell of the user is not listed in the file).
+.SH OPTIONS
+No options are supported for this module.
+.SH FILES
+To enable the login shell check, add the following line to the appropriate
+configuration file: 
+.IP 
+auth	required	pam_shells.so
+.SH AUTHOR
+Seraphim Mellos <mellos at ceid dot upatras dot gr>
+.SH "SEE ALSO"
+.BR shells(5),
+.BR pam (8),
+.BR pam.conf (8), 
+.BR pam.d (8)
+
